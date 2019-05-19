@@ -4,6 +4,8 @@ using TennisBookings.Web.Services;
 using TennisBookings.Web.ViewModels;
 using Xunit;
 using Moq;
+using TennisBookings.Web.Configuration;
+using Microsoft.Extensions.Options;
 
 namespace TennisBookings.Web.Tests.Controllers
 {
@@ -18,7 +20,9 @@ namespace TennisBookings.Web.Tests.Controllers
                 WeatherCondition = WeatherCondition.Sun
             });
 
-            var sut = new HomeController(mockWeatherForecaster.Object);
+            var option = Options.Create(new FeaturesConfiguration { EnableWeatherForecast = true });
+
+            var sut = new HomeController(mockWeatherForecaster.Object, option);
 
             var result = sut.Index();
 
@@ -35,8 +39,10 @@ namespace TennisBookings.Web.Tests.Controllers
             {
                 WeatherCondition = WeatherCondition.Rain
             });
-            
-            var sut = new HomeController(mockWeatherForecaster.Object);
+
+            var option = Options.Create(new FeaturesConfiguration { EnableWeatherForecast = true });
+
+            var sut = new HomeController(mockWeatherForecaster.Object, option);
 
             var result = sut.Index();
 
