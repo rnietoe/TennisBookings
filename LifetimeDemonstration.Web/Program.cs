@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace TennisBookings.Web
+namespace LifetimeDemonstration.Web
 {
     public class Program
     {
@@ -12,11 +12,6 @@ namespace TennisBookings.Web
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseDefaultServiceProvider(options =>
-                {
-                    //recommended for development environment, not production
-                    options.ValidateScopes = true;
-                })
                 .UseStartup<Startup>();
     }
 }
